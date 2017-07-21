@@ -74,7 +74,7 @@ def spherical_law_of_cosines(point1, point2):
 
 def read_uk_latlong():
     uk_cities = []
-    with open('uk24727_latlong.txt', 'r') as fr:
+    with open('../data/uk24727_latlong.txt', 'r') as fr:
         for line in fr.readlines():
             lat, lng = line.strip().split(' ')
             uk_cities.append((float(lat), float(lng)))
@@ -83,7 +83,7 @@ def read_uk_latlong():
 
 def read_optimal_solution():
     indices = []
-    with open('uk24727_optimal.txt', 'r') as fr:
+    with open('../data/uk24727_optimal.txt', 'r') as fr:
         for line in fr.readlines():
            indices.append(int(line.strip()))
     return indices

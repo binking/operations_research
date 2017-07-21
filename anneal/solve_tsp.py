@@ -24,6 +24,8 @@ def pick_random_solution(domain):
     for d in range(len(cities)):
         d_value = random.choice([ele for ele in domain if ele not in random_solution])
         random_solution.append(d_value)
+        sys.stdout.write("Picked up %.2f%% cities\r" % (len(random_solution) * 100.0 / len(cities)))
+        sys.stdout.flush()
     return random_solution
 
 def pick_closest_cities(domain):
@@ -56,12 +58,12 @@ def pick_uk_closest_cities(domain):
     closest_solution.append(cur_city)
     next_cities.remove(cur_city)
     # find the cloest city to last city
-    for i in range(len(cities) - 1):
+    for _ in range(len(cities) - 1):
         dist2cur_city = [geom_norm(cities[cur_city], cities[i]) for i in next_cities]
         cur_city = next_cities[np.argmin(dist2cur_city)]
         closest_solution.append(cur_city)
         next_cities.remove(cur_city)
-        sys.stdout.write("Picked up %.2f %% cities\r" % (i*100.0 / len(cities)))
+        sys.stdout.write("Picked up %.2f%% cities\r" % (len(closest_solution)*100.0 / len(cities)))
         sys.stdout.flush()
     print "Picking up closest solution costs %.2f seconds" % (time.time() - pickup_time)
     return closest_solution
